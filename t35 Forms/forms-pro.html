@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Forms</title>
+        <style>
+            body{
+                line-height: 25px;
+                font-size: 16px;
+            }
+            form{
+                border-style: dotted;
+                margin: 20px;
+                padding: 30px;
+                border-color: crimson;
+            }
+            div{
+                border-style: double;
+                border-color: darkblue;
+            }
+            p{
+                border-style: groove;
+                border-color: darkgreen;
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+        <form id="firstForm">Form
+            <div>DIV
+                <p>P</p>
+            </div>
+        </form>
+
+        <form id="test2" name="secondForm">
+            <input data-validation="notEmpty" type="text" name="family">
+            <select name="list">
+                <option value="city1">تهران</option>
+                <option value="city2">اصفهان</option>
+                <option value="city3">شیراز</option>
+            </select>
+            <button id="btnSave">ذخیره</button>
+        </form>
+        <script>
+            'use strict';
+
+
+            //secondForm.family.focus();
+            class formValidator{
+                _error = false;
+
+                constructor(formElem , autoFocusElemnt){
+                    this._formElem = formElem;
+                    //this.setFocusOnAllElements(formElem.elements);
+                    
+                    this.focusHandler();
+                    this.submitHandler();
+                    autoFocusElemnt.focus();
+                }
+                
+
+                submitHandler() {
+                    this._formElem.onsubmit = (event) => {
+                        event.preventDefault();
+                        
+                        if(this._error === true){
+                            alert("you can't submit.you have error")
+                        } else {
+                            this._formElem.submit();
+                        }
+                    }
+                }
+
+                focusHandler(){
+
+                    this._formElem.addEventListener('focusin' , function(event){
+                        console.log('focusin on');
+                        console.log(event.target);
+                    });
+                    
+                    this._formElem.addEventListener('focusout' , (event) => {
+                       
+                        if(event.target.tagName == 'BUTTON'){
+                            return;
+                        }
+                        
+
+                        if(!(event.target.dataset.validation in this)){
+                            return;
+                        }
+                        
+                        console.log('focusout on: ');
+                        console.log(event.target);
+
+                        let result = this[event.target.dataset.validation](event.target);
+
+                        if(result === false) {
+                            this._error = true;
+                        } else {
+                            this._error = false;
+                        }
+                    });
+
+                }
+
+                notEmpty(elem) {
+                    if(elem.value.length == 0){
+                        let error = document.createElement('div');
+                        
+                        error.innerText = "input can't empty";
+                        error.classList.add(['alert', 'error']);
+                        //elem.after(error);
+                        btnSave.after(error);
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+
+                setFocusOnAllElements(elements){
+                    for(let e of elements){
+                        e.onfocus = function(event) {
+                            console.log('focus on');
+                            console.log(event.target);
+                        }
+
+                        e.onblur = function(event) {
+                            console.log('blur on');
+                            console.log(event.target);
+                        }
+                    }
+                    
+                }
+            }
+
+            new formValidator(secondForm , secondForm.family);
+        </script>
+        
+    </body>
+</html>

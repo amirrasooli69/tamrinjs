@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!-- <meta name="viewport" content="with=device-with, initial-scale=1.0"> -->
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>OOP</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+
+        <script type="text/javascript">
+
+        function createPerson(Name , Age , Height){
+            var personObj ={};
+            personObj.name =Name;
+            personObj.age = Age;
+            personObj.height = Height;
+
+            personObj.sayName = function(){
+                return "my name is: " + personObj.name;
+            }
+            return personObj;
+        }
+
+        var mohammad = createPerson('Mohammad' , 50 , 170);
+
+        var ali = createPerson('Ali' , 30 ,180);
+
+        console.log(mohammad.sayName());
+
+        console.log(ali.sayName());
+
+
+        function Person(Name, Age, Height, Weight){
+
+            this.name = Name;
+            this.age = Age;
+            this.height = Height;
+            this.weight = Weight;
+
+            this.sayName = function(){
+                return "My Name Is: " + this.name.replace(this.name[0],this.name[0].toUpperCase());
+            }
+
+            this.sayBMI = function(){               
+                return "My BMI is: " + (this.weight /(this.height/100)**2).toFixed(2);
+            }
+        }
+
+         var sasan = new Person('amir' , 25 , 160 ,75);
+         console.log(sasan.sayName(), sasan.sayBMI());
+     
+        </script>
+        
+    </body>
+</html>

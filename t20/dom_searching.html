@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>tamrin dom</title>
+    </head>
+    <body style="text-align: center;">
+        <div class="col2">
+            <div id="idddd" class="col2">
+                <ul>
+                    <li>list 1</li>
+                    <li>list 2</li>
+                    <li>list 3</li>
+                </ul>
+                <ul class="box">
+                    <li>list 4</li>
+                    <li>list 5</li>
+                    <li>list </li>
+                </ul>
+            </div>
+
+        </div>
+        <table id="table1" class="myTable">
+            <thead>
+                <tr>
+                    <th>column one</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>content column one</td>
+                </tr>
+                <tr>
+                    <td>content column one</td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="table2-test" class="myTable">
+        </table>
+        
+
+        <button id="test1" >click me</button>
+        <script>
+            'use strict';
+            // let myDiv= document.getElementById('idddd');
+            // console.log(myDiv); // log be soorate tag html namayesh midahad
+            // console.dir(myDiv); // dir baes mishavad ke be soorate object sakhte shavad
+
+            // let myDivs=document.getElementsByTagName('div');
+            // console.log(myDivs)
+
+            // let test=document.getElementsByClassName('myTable');
+            // console.log(test);
+
+            // dakhele parantez query hayi az jense css migirad
+            // let tables = document.querySelectorAll('table');
+            // let tables = document.querySelectorAll('table#table2-test');
+            // let tables = document.querySelectorAll('.myTable');
+            // console.log(tables);
+
+            // agar all nadashte bashe az avale window shoroo mikone va avali o barmigardanad
+            // let first = document.querySelector('table');
+            // console.log(first);
+
+            // let myElem = document.querySelector('ul li');
+            // console.log(myElem);
+
+            // let myElem = document.querySelectorAll('ul li');
+            // console.log(myElem);
+
+            // let myElem = document.querySelector('ul li');
+            // console.log(myElem);
+
+            // closest oun query ke zadim avalin pedar ya nazdiktarin ra barmigardanad
+            // console.log(myElem.closest('.col2'));
+
+            let ul = document.querySelector('ul.box');
+            let li = ul.querySelectorAll('li');
+            console.log(li);
+        </script>
+    </body>
+</html>

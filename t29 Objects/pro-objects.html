@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Objects</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+
+        <script>
+            'use strict';
+
+            let newObj = {
+                name: 'Amir',
+                family: 'Rasooli',
+                get age() { // ijad getter baraye object
+                    return this.userAge;
+                },
+                set age(uAge){ // ijade seter baraye object
+                    if(uAge < 18)
+                    {
+                        throw new Error('inja barat monaseb nist'); // nahve ijad va kontrol khata
+                    }
+                    this.userAge = uAge;
+                }
+            }
+            // console.log(newObj);
+             newObj.age = 55;           
+            // console.log(newObj.age);
+            // newObj.age = 15;
+
+            function secondObj(pname){
+                this.name = pname;
+                this.family = 'Rasooli';
+
+                Object.defineProperties(this , {
+                    age: {
+                        get: function(){
+                            return this.userAge;
+                        },
+                        set: function(uAge){
+                            if(uAge < 18) {
+                                throw new Error ('Acces denied for you');
+                            }
+
+                            this.userAge = uAge;
+                            console.log('in setter')
+                        }
+                    }
+                })
+            }
+
+            let obj2 = new secondObj('asghar');
+            obj2.age = 45;
+            
+
+            let copyN = {};
+            Object.assign(copyN,newObj,obj2);
+            console.log(copyN);
+
+            alert(obj2?.name?.name); // alamate sooal baes mishavad error nadashte bashim
+
+
+        </script>
+        
+    </body>
+</html>

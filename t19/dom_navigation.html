@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>tamrin dom</title>
+    </head>
+    <body style="text-align: center;">
+        <div class="idddd">
+            <ul>
+                <li>list 1</li>
+            </ul>
+        </div>
+        <table id="table1">
+            <thead>
+                <tr>
+                    <th>column one</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>content column one</td>
+                </tr>
+                <tr>
+                    <td>content column one</td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="table2-test">
+            <thead>
+                <tr>
+                    <th>column one</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>content column one</td>
+                </tr>
+                <tr>
+                    <td>content column one</td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+        <button id="test1">click me</button>
+        <script>
+            'use strict'; // dar in halat mahdoodiyat ha bishtar ast ke baese amniyat bishtar mishavad
+            let body = document.body;
+            let myDiv = body.childNodes[1];
+            let ul = myDiv.childNodes[1];
+            // console.log(ul.parentNode);
+            // console.log(ul.nextSibling);
+// az esme elemnt baraye dastresi behesh estefade kardim
+            console.log(table1.tBodies[0].rows);
+// chon az - dar name table estefade shode bayad az tarighe object window behesh dastresi peida konim
+// dar js az - dar nam gozari estefade nemikonim. js - ra nemishenasad
+            console.log(window['table2-test'].tBodies[0].rows); 
+            // let chilCount = myDiv.childNodes.length;
+            // for(let i=0; i<chilCount;i++){
+            //     console.log(myDiv.childNodes[i]);
+            // }
+
+
+
+            //console.log(myDiv);
+        </script>
+    </body>
+</html>

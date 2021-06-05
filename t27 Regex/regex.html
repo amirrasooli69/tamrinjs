@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>REGEX</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+
+        <script>
+            'use strict';
+
+            let text = "Salam khoobi? \nkhoobam \nkhooooo";
+            let pattern = RegExp("khooooooo*","gm");
+
+            //console.log(pattern.exec(text));
+
+            function multiMatchReg(rex,text){
+                let match;
+                let results = [];
+                while(match !== null){
+                    match = rex.exec(text);
+
+                    if(match !== null)
+                    {
+                        results.push(match);
+                    }
+                }
+                return results;
+            }
+
+            console.log(multiMatchReg(pattern,text));
+        </script>
+        
+    </body>
+</html>

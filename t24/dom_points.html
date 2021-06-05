@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>tamrin dom</title>
+        <style>
+            .box {
+                width: 300px;
+                height: 200px;
+                border: 25px solid #ebc48f;
+                padding: 20px;
+                overflow: auto;
+            }
+            #circle{
+                width: 20px;
+                height: 20px;
+                background-color: red;
+                position: absolute;
+                border-radius: 100%;
+            }
+            .box div{
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body style="text-align: center;">
+            <h1>hi too all dear students and programmer</h1>
+            <hr/>
+            <button onclick="goToButtom()">go to Buttom</button>
+            <button onclick="slowDown()">slow down</button>
+            <div id="circle"></div>
+            <p>number 1</p>
+            <div id="example1" class="box">
+                    <div>box 1</div>
+                    <div>box 2</div>
+                    <div>box 3</div>
+                    <div>box 4</div>
+                    <div>box 5</div>
+            </div>
+        <script>
+            'use strict';
+            console.log(example1.getBoundingClientRect());
+            // mororgaraye ghadimi shayad event ra nadashte bashand bekhatere hamin ye event ra mirizim ya window.event
+            document.onmousemove = function(event){
+                event = event || window.event;
+                
+                // in kode baraye in ke moroorgaraye ghadimi pageX va pageY ra nadarand neveshtim
+                // ba in kar mokhtasate mouse ra darim
+                if(event.pageX == null && event.clientX !== null) {
+                    event.pageX == event.clientX + document.body.scrollLeft;
+                    event.pageY == event.clientY + document.body.scrollTop;
+                }
+                //console.log(event.pageX,event.pageY);
+
+                //elemeniti ke dar in mokhtasat hast ra barmigardanad
+                let hoverdElem = document.elementFromPoint(event.pageX,event.pageY); 
+
+                console.log(hoverdElem.tagName);
+                if(hoverdElem.tagName != 'BODY'){ 
+
+                    hoverdElem.style.backgroundColor = 'green';
+                }
+            }
+            function leaved(event){
+                event = event || window.event;
+
+                event.target.style.backgroundColor = '';
+            }
+            for(let elem of document.body.childNodes){
+                if(elem instanceof Element)
+                {
+                    elem.onmouseleave = leaved;
+                }
+            }
+            </script>
+    </body>
+</html>

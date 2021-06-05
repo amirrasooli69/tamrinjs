@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>REGEX</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+
+        <button onclick="animateToRight()" id="mybutton" style="border-radius: 10px; border: 1px solid green;background-color: seagreen;
+        width: 500px; padding: 10px;">
+        <span style="border-radius: 100%; background-color: salmon; width: 50px; height: 30px; display: block;"></span></button>
+
+        <script>
+            'use strict';
+            
+            function animateToRight(){
+                let circle = mybutton.childNodes[1];
+                let x = 0;
+                let intId = setInterval(function() {
+                    x++;
+                    if(x == 420){
+                        clearInterval(intId);
+                    }
+                    circle.style.transform = `translate3d(${x},0,0)`;
+                },50)
+
+            }
+        </script>
+        
+    </body>
+</html>

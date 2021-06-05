@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Functions</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+
+        <script>
+            'use strict';
+            // let test =(input) =>{
+            //     alert(1234);
+            //     alert(input);
+            // }
+            
+            // test("salam be hame");
+//--------
+            // be tavan reseoondane gheire bazgashti
+            // function pow(x,n){
+            //     let result=1;
+
+            //     for(let i=0; i<n;i++){
+            //         result *= x;
+            //     }
+
+            //     return result;
+            // }
+            // console.log(pow(2,3));
+//--------
+            // be tavan resoondan be bazgashti
+            // function pow(x,n){
+                
+            //     if(n==1){
+            //         return x;
+            //     } else {
+            //         return x * pow(x,n-1);
+            //     }
+            // }
+            // alert(pow(2,4));
+//--------
+            // be in ... ha spread migooyand
+            // let list1 = [2,4,6,8];
+            // let list2 = [1,3,5,9];
+
+            // let allNumbers = [...list1,...list2];
+            // console.log(allNumbers);
+            // console.log(allNumbers.sort());
+
+            // let name="amir";
+            // console.log([...name]);
+            // alert([...name])
+
+            // let allNumbers2 = [...allNumbers];
+            // console.log(allNumbers2); // maghadire arraye copy mishavad
+
+            // let obj1 = {
+            //     name: "asghar"
+            // }
+            // //let obj2 = obj1;
+
+            // //obj2.name = "javad";
+            // //console.log(obj1.name); // in nahve copy eshtebah ast. bayad az Object.assign(obj1,obj2) ya ... estefade konim
+            
+            // let obj2 = {...obj1};
+
+            // obj2.name = "javad";
+            // console.log(obj1.name);
+//--------
+            // nokte in ghesmat kalame kilidi func ast
+            // let sayHi = function func(who){
+            //     if(who){
+            //         alert(`Hello ${who}`);
+            //     }else {
+            //         func("Guest");
+            //     }
+            // }
+            // //console.log(sayHi());
+            // // kalme kilidi func baes mishavad vaghti bad az entesab function ghabli taghir mikonad ba moshkel nakhorad
+            // let welcome = sayHi;
+            // sayHi = null;
+            // welcome();
+//--------
+            function show(x){
+                alert(`Called with ${x}`);
+                return x;
+            }
+
+            function cachingDecorator(func){
+                let cache = new Map();
+
+                return function(x){
+                    if(cache.has(x)){
+                        return cache.get(x);
+                    }
+
+                    let result = func(x);
+
+                    cache.set(x,result);
+                    return result;
+                };
+            }
+
+            let worker = {
+                someMethod() {
+                    return 2;
+                },
+                show(x){
+                    alert("Call with " + x);
+                    return x * this.someMethod();
+                }
+            }
+             show = cachingDecorator(show);
+
+            //   alert(show(1));
+            //   alert("Again: " + show(1));
+            
+            // alert(worker.show(1));
+
+            // worker.show = cachingDecorator(worker.show(2));
+            
+            alert(worker.show(2));
+
+            // show(4);
+            // console.log(show("asghar"));
+        </script>
+        
+    </body>
+</html>

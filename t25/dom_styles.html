@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM</title>
+        <style>
+            .hidden {
+                display: none;
+            }
+            div {
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body style="text-align: center;">
+        <h1>hi too all dear students and programer</h1>
+        <hr/>
+
+        <button onclick="toggleP()">show/don't show</button>
+        <button onclick="changeColor()">change color</button>
+        <div id="test" class="box right hidden" style="width: 200px; height: 200px; background-color: salmon;">
+        <p>this is test</p>
+        </div>
+        <script>
+            'use strict';
+
+            let myDiv = document.getElementById('test');
+            console.log(myDiv.classList);
+            myDiv.classList.add('box2', 'box3'); // add kardane kelashaye jadid be element
+            myDiv.classList.remove('box3',); // pak kardane kelasha
+            myDiv.classList.contains('right'); // baresi mikonad ke aya kelas dar element hast ya na. bashad=true, nabashad=false.
+            console.log(myDiv.classList.contains('right'));
+            // toggle agar vojood nadashte bashad ezafe mikonad va agar voojood dashte bashad hazf mikonad
+            myDiv.classList.toggle('box4'); // inja ezafe mikonad
+            myDiv.classList.toggle('box4'); // inja hazf mikonad
+
+            function toggleP(){
+                myDiv.classList.toggle('hidden');
+            }
+            console.log(myDiv.style);
+            console.log(myDiv.style.padding); // in ravesh baraye gereftan meghdare style kar nemikonan bayad az "getComputedStyle" estefade kard
+            let allStyle = getComputedStyle(myDiv); // hame property haye style ke meghdar gereftan ra miavarad
+            console.log(allStyle.padding); // in ravesh meghdare style ra neshan midahad
+            function changeColor(){
+                myDiv.style.backgroundColor = prompt('how do you love this color?');
+            }
+        </script>
+    </body>
+</html>

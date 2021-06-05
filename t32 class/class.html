@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Class</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+
+        <script>
+            'use strict';
+
+            // class animal {
+            //     constructor() {
+            //         this.name = "cat";
+            //     }
+
+            //     running =() => {
+            //         console.log(this.name);
+            //         console.log('... runing ...');
+            //     }
+            // }
+
+            //let myAnimal = new animal();
+
+            //console.log(myAnimal);
+            
+            //setTimeout(() => myAnimal.running(),1000);
+
+            // class rabbit extends animal{
+            //     walk(){
+            //         console.log('... walking ...');
+            //     }
+            // }
+
+            // let rabbit1 = new rabbit();
+            // rabbit1.running();
+
+            // overloading and overriding
+
+            class Animal {
+                testData = 'I am parent';
+
+                static myStaticData = "static..."; 
+                constructor(name){
+                    this.animalName = name;
+                }
+                walking(){
+                    console.log('... walking ...');
+                }
+
+                static print(){
+                    console.log(this.myStaticData); // or Animal.myStaticData
+                }
+            }
+
+            //console.log(Animal.myStaticData);
+            
+            // let animal1 = new Animal();
+            // let animal2 = new Animal();
+            //Animal.myStaticData = "joghd";
+            //animal1.print();
+            //animal2.print();
+
+             Animal.myStaticData = "Amir";
+            // Animal.print();
+
+            
+
+
+            class Rabbit extends Animal{
+                testData = 'I am child';
+
+                constructor(name,type) {
+                    super(name);
+                    this.typeName = type;
+                }
+                walking(){
+                    super.walking();
+                    console.log('... jumping ...');
+                }
+            }
+
+            Rabbit.print(); // chon methode print dar Class Animal (class pedar) be soorate static tarif shode lazem nist shei besazim
+            // let rabbit1 = new Rabbit('javad','asghar');
+            // rabbit1.walking();
+            // console.log(rabbit1);
+            
+            
+        </script>
+        
+    </body>
+</html>

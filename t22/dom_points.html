@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>tamrin dom</title>
+        <style>
+            .box {
+                width: 300px;
+                height: 200px;
+                border: 25px solid #ebc48f;
+                padding: 20px;
+                overflow: auto;
+            }
+            #circle{
+                width: 20px;
+                height: 20px;
+                background-color: red;
+                position: absolute;
+                border-radius: 100%;
+            }
+            .box div{
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body style="text-align: center;">
+            <h1>hi too all dear students and programmer</h1>
+            <hr/>
+            <button onclick="goToButtom()">go to Buttom</button>
+            <button onclick="slowDown()">slow down</button>
+            <div id="circle"></div>
+            <p>number 1</p>
+            <div id="example1" class="box">
+                    <div>box 1</div>
+                    <div>box 2</div>
+                    <div>box 3</div>
+                    <div>box 4</div>
+                    <div>box 5</div>
+            </div>
+            <p>number 2</p>
+            <div id="example2" class="box">
+                <div>box 1</div>
+                <div>box 2</div>
+                <div>box 3</div>
+                <div>box 4</div>
+                <div>box 5</div>
+        </div>
+        <p>number 3</p>
+        <div id="example3" class="box">
+            <div>box 1</div>
+            <div>box 2</div>
+            <div>box 3</div>
+            <div>box 4</div>
+            <div>box 5</div>
+    </div>
+            <button onclick="goToCorner() ">got to corner</button>
+            <button onclick="goToTop()">go to top</button>
+            <button onclick="goToBox()">got to box</button>
+        <script>
+            'use strict';
+            console.log(example1.offsetLeft);
+            
+            function goToCorner(){
+                circle.style.top = example1.offsetTop + "px";
+                circle.style.left = example1.offsetsetLeft  + "px";
+            }
+
+            function goToTop(){
+                window.scrollTo(0,0); // scrollTo paresh mikonad be mokhtasate dade shode
+            }
+
+            function goToButtom(){
+                window.scrollTo(window.scrollTo(0,example3.offsetTop)); // be balaye box 3 miravad
+            }
+
+            function slowDown(){ 
+                window.scrollBy(0,10) //scrollBy az jayi ke hastim in meghdar ra ezafe mikonad
+            }
+
+            function goToBox(){
+                let boxNumber = prompt("enter number of box");
+
+                window['example' + boxNumber].scrollIntoView(); // mitoonim ba tavajoh be name elemen scroll konim
+                // in method meghdare true/false migirad ke agar false bashad be top element miravad va agar true bashad be pain miravad
+            }
+            </script>
+    </body>
+</html>
