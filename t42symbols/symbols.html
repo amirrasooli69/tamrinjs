@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Symbols</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+
+        <script>
+            'use strict';
+            let mySymbole1 = Symbol("test1");
+            let mySymbole2 = Symbol("test2");
+
+            console.log(mySymbole1, mySymbole2);
+
+            
+            console.dir(mySymbole1.description);
+            console.dir(mySymbole2)
+
+            console.log(mySymbole1 instanceof Object);
+
+            let numbers = [1,2,3];
+            // console.log(numbers + 1);
+            numbers[Symbol.toPrimitive] = function() { // ba method toPrimitive migim dar soorat kast shodan che raftari anjam dahad
+                return 3;
+            }
+            console.log(numbers + 1);
+
+            
+        </script>
+        
+    </body>
+</html>
