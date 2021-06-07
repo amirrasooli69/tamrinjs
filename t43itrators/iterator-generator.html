@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>iterator-Generator</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+
+        <script>
+            'use strict';
+            let test = {
+                name: "Amir",
+                family: "Rasooli",
+                iterated: [],
+                next: function() {
+                    if(this.iterated.length >= 2) {
+                        return {
+                            done: true
+                        };
+                    }
+                    this.iterated.push(this.name);
+
+                    return {
+                        Value: (this.iterated.length == 1 ? this.name: this.family),
+                        done: false
+                    };
+                },
+                [Symbol.iterator]: function() {
+                            return this;
+                    }
+            };
+
+            for(const tmp of test) {
+                console.log(tmp);
+            }
+
+            //------- General function
+
+            function* owerGen(){
+                console.log('first line:');
+                yield 1;
+
+                console.log('second line:');
+                yield 2;
+            }
+
+            let result = owerGen();
+
+            console.log('our result is: ', result);
+
+            console.log(result.next());
+            console.log(result.next());
+            console.log(result.next());
+//------------------------------
+            function* gen(){
+                let ask1 = yield "2 + 2 =?";
+                console.log(ask1);
+
+                let ask2 = yield "3 * 3 = ?";
+                console.log(ask2);
+            }
+
+            let generator = gen();
+
+            console.log(generator.next().value);
+            console.log(generator.next(4).value);
+            console.log(generator.next(4).done);
+
+        </script>
+        
+    </body>
+</html>
