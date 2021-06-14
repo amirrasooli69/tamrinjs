@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>change style</title>
+    </head>
+    <body style="text-align: center;">
+        <h1>hello too all student and program</h1>
+        <hr>
+            <style>
+                .hero {
+                    height: 200px;
+                    padding: 20px;
+                    font-size: 50px;
+                    background-color: brown;
+                }
+            </style>
+            <div>
+                <p>Hello Amir Rasooli</p>
+            </div>
+        <script>
+            'use strict';
+            // document.querySelector('div').classList.add('hero');
+            //--------
+            // document.querySelector('div').addEventListener('click', (event) =>{
+            //     event.currentTarget.classList.add('hero')
+            // })
+            //--------
+            document.querySelector('div').addEventListener('click', (event) =>{
+                event.currentTarget.classList.toggle('hero')
+            })
+        </script>
+        
+    </body>
+</html>
