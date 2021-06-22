@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<heml lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Cpmpatible" content="IE=edge">
+        <title>Form Validation</title>
+    </head>
+    <body>
+        <form data-validation>
+            <div>
+                <label for="name">موبایل</label>
+                <input type="text" name="phoneNumber" required pattern="09(1[0-9]|3[1-9])-?[0-9]{3}-?[0-9]{4}">
+                <!-- <small hidden> لطفا شماره موبایل را با فرمت درست وارد کنید</small> -->
+            </div>
+            <div>
+                <label for="name">نام</label>
+                <input type="text" name="name" required minlength="10">
+                <!-- <small hidden> لطفا شماره موبایل را با فرمت درست وارد کنید</small> -->
+            </div>
+            <button type="submit"> ثبت</button>
+        </form>
+        <script src="./index.js"></script>
+    </body>
+</heml>
