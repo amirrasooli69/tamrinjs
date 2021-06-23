@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Player</title>
+    <body>
+        <div class="player">
+            <audio src="./rz.mp3"></audio>
+            <div class="cover"></div>
+            <nav>
+                <div class="left">
+                    <i class="material-icons">menu</i>
+                    <h6>PlayList</h6>
+                </div>
+                <div class="right">
+                    <i class="material-icons search">search</i>
+                    <i class="material-icons">queue_music</i>
+                </div>
+            </nav>
+            <div class="player-ui">
+                <div class="title">
+                    <h3>Hello</h3>
+                </div>
+                <div class="small">
+                    <i class="material-icons">replay</i>
+                    <p>Adele</p>
+                    <i class="material-icons">volume_up</i>
+                </div>
+                <div class="progress">
+                    <div class="played">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <i class="material-icons">skip-previous</i>
+                    <i class="material-icons" data-action="play">play_arrow</i>
+                    <i class="material-icons">skip_next</i>
+                </div>
+                <div class="btn">
+                    <i class="material-icons">shuffle</i>
+                </div>
+                <div class="music">
+                    <div class="song-1">
+                        <div class="info">
+                            <div class="img first"></div>
+                            <div class="titles">
+                                <h5>Hello</h5>
+                                <p>Adele</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <script src="./player.js"></script>
+        <script>
+            new Player(document.querySelector('.player'));
+        </script>
+    </body>
+</html>
