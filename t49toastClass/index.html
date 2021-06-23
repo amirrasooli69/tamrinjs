@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Cpmpatible" content="IE=edge">
+        <link rel="stylesheet" href="./style.css">
+        <title>Toast</title>
+    </head>
+    <body>
+        <button>danger</button>
+        <button>success</button>
+        <!-- <div class="toast-container">
+            <div class="toast-message">Message 1</div>
+            <div class="toast-message">Message 2</div>
+        </div> -->
+        <script src="./index.js"></script>
+        <script>
+            const toast = new Toast({
+                duration: 2000
+            })
+
+            document.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    toast.show('Message 1', btn.innerText)
+                })
+            })
+
+        </script>
+    </body>
+</html>
