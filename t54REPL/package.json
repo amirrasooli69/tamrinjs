@@ -1,0 +1,19 @@
+{
+  "name": "t54repl",
+  "version": "1.0.0",
+  "description": "sample code",
+  "main": "input.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "repl",
+    "CLI",
+    "Readline"
+  ],
+  "author": "Amir Rasooli",
+  "license": "ISC",
+  "dependencies": {
+    "readline": "^1.3.0"
+  }
+}
