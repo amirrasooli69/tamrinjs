@@ -1,22 +1,33 @@
 {
-  "name": "t53npm",
-  "version": "1.0.0",
+  "name": "t53npm-amir",
+  "version": "1.0.4",
   "description": "learn npm",
-  "main": "index.js",
+  "main": "cowhello.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js && echo 'goodbye!'"
+    "start": "node cowhello.js && echo 'goodbye!'"
   },
   "bin": {
-    "my-test-command": "index.js"
+    "my-test-command": "cowhello.js"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "cowsay2": "^2.0.4"
   },
-  "private":"true",
   "homepage": "papiloo.ir",
-  "engines": { "node": ">= 6.0.0","npm":"3.0.0"},
-  "browserslist" : [""]
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": "3.0.0"
+  },
+  "browserslist": [
+    ""
+  ],
+  "author": {
+    "name": "Amir Rasooli",
+    "email": "amirrasooli@gmail.com"
+  },
+  "keywords": [
+    "npm",
+    "learning"
+  ],
+  "license": "ISC"
 }
