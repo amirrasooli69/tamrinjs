@@ -13,13 +13,20 @@ var mimeTypes = {
 };
 
 http.createServer(function (req, res){
-    fs.readFile(__dirname + req.url, function (err, data) {
+    console.log(req.url);
+    var urlParts = req.url.split('?');
+
+    if(urlParts[1]) {
+        console.log('we have data from parmas');
+        console.log(urlParts[1]);
+    }
+    fs.readFile(__dirname + urlParts[0], function (err, data) {
         if(err) {
             res.writeHead(404);
             res.end(JSON.stringify(err));
             return;
         }
-        var mimetype = mimeTypes[req.url.split('.').pop()];
+        var mimetype = mimeTypes[urlParts[0].split('.').pop()];
 
         if(!mimetype) {
             mimetype = 'text/plain';
