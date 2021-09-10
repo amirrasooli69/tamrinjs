@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
             return;
         }
 
-        let mimeType = mimeTypes.contentType(filePath);
+        let mimeType = mimeTypes.lookup(filePath);
         res.writeHead(200, {"Content-Type": mimeType});
         res.write(data, "binary");
         res.end();
