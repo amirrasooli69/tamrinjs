@@ -2,7 +2,7 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 const mimeTypes = require('mime-types');
-const configs = require('./configs').configs;
+const configs = require('./configs/configs').configs;
 const queryStringHandler = require('qs');
 const controllers = require('./controllers/ControllerLoader').controllers;
 
