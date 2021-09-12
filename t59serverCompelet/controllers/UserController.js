@@ -1,6 +1,7 @@
 
 class user { 
-    index() {
+    index(data) {
+        console.log(data);
         return {
             name: "Amir"
         }
@@ -8,6 +9,10 @@ class user {
 
     sayHi() {
         console.log('helllllllo');
+    }
+
+    login(data) {
+        return 'user/login.html';
     }
 }
 
