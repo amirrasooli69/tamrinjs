@@ -6,6 +6,7 @@ const configs = require('./configs/configs').configs;
 const queryStringHandler = require('qs');
 const controllers = require('./controllers/ControllerLoader').controllers;
 const formidable = require('formidable');
+const staticServer = require('node-static');
 
 
 const staticFileServer = new staticServer.Server(
@@ -30,8 +31,6 @@ const server = http.createServer((req, res) => {
         
     // agar donbale api bashim 
     if(req.parsedURL.pathname.search('/api') >= 0) {
-        route = getAPIControllerMethodName(req);
-
         if(controllers[route.controller] != undefined) {
             response = controllers[route.controller][route.method](data);
             res.writeHead(200, {"Content-Type": "application/json"});
@@ -116,11 +115,15 @@ async function getRequestData(req) {
 
     return await promise;
 }
-function getAPIControllerMethodName(req) {
-    part = req.parsedURL.pathname.split('/');
+function getControllerMethodName(req) {
+    parts = req.parsedURL.pathname.split('/');
 
+    controllerPlace = 1;
+    if(req.parsedURL.pathname.search('/api') >= 0){
+        controllerPlace ++;
+    }
     return {
-        controller: (parts[2] != undefined ? parts[2]: 'Home'),
-        method: (parts[3] != undefined ? parts[3]: 'index')
+        controller: (parts[controllerPlace] != undefined ? parts[controllerPlace]: 'Home'),
+        method: (parts[controllerPlace +1] != undefined ? parts[controllerPlace +1]: 'index')
     };
 }
