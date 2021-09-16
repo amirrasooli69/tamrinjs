@@ -61,8 +61,14 @@
                     return;
                 }
                 // add new todo to to todo list
+                $.post('/todos', {text: newTodo}, function(data){
 
-                model.todos.push({text: newTodo});
+                    model.todos.push(data);
+                }).fail(function(err) {
+                    console.log(err);
+                    alert('operation failed');
+                })
+
                 // clear new todo text box
                 $('#new-todo').val('');
                 
