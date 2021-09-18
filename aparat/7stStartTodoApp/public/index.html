@@ -15,14 +15,13 @@
             <div class="row">
                 <div class="col">
                     <!-- return false baraye inke be soorate single page kard konad-->
-                    <form v-on:submit.prevent="submitForm"; autocomplete="off" id="form">
-                    <div class="form-group">
-                        <label for="newTODO">{{ editMode ? 'Update Todo' : 'Add Todo'}}</label>
-                        <input type="text" class="form-control" id="new-todo" v-model="newTodo.text" placeholder="what you are going to do?"></input>
-
-                    </div>
-                    <button class="btn btn-succes">{{ editMode ? 'Update' : 'Add'}}</button>
-                </form>
+                    <form v-on:submit.prevent="submitForm" autocomplete="off" id="form">
+                        <div class="form-group">
+                            <label for="newTodo">{{editMode ? 'Update Todo' : 'Add Todo'}}</label>
+                            <input type="text" class="form-control" id="new-todo" v-model="newTodo.text" placeholder="what you are going to do?"></input>
+                        </div>
+                        <button class="btn btn-succes">{{editMode ? 'Update' : 'Add'}}</button>
+                    </form>
                 </div>
             </div>
             <!-- data table -->
@@ -78,8 +77,6 @@
                 }
             })
 
-
-
             function createTodo() {
                 var newTodo = $('#new-todo').val();
                 // validation.
@@ -133,7 +130,7 @@
                     $.ajax({
                     url: '/todos',
                     contentType: 'application/json',
-                    data: JSON.stringify({oldTodo: oldTodo, newTodo: newTodo}),
+                    data: JSON.stringify({oldTodo, newTodo}),
                     method: 'put'
                 }).done(function() {
                     // for change state to add
