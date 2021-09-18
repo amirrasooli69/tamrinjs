@@ -15,13 +15,13 @@
             <div class="row">
                 <div class="col">
                     <!-- return false baraye inke be soorate single page kard konad-->
-                    <form onsubmit="createTodo();return false;" autocomplete="off">
+                    <form v-on:submit.prevent="submitForm"; autocomplete="off" id="form">
                     <div class="form-group">
-                        <label for="newTODO">Add TODO</label>
-                        <input type="text" class="form-control" id="new-todo" placeholder="what you are going to do?"></input>
+                        <label for="newTODO">{{ editMode ? 'Update Todo' : 'Add Todo'}}</label>
+                        <input type="text" class="form-control" id="new-todo" v-model="newTodo.text" placeholder="what you are going to do?"></input>
 
                     </div>
-                    <button class="btn btn-succes">Add</button>
+                    <button class="btn btn-succes">{{ editMode ? 'Update' : 'Add'}}</button>
                 </form>
                 </div>
             </div>
@@ -32,6 +32,7 @@
                         <tbody>
                           <tr v-for="todo in todos"> 
                             <td>{{todo.text}}</td>
+                            <td with="10"><a v-on:click="beginUpdating(todo)" class="btn text-warning btn-sm">Edit</a></td>
                             <td with="10"><a v-on:click="deleteTodo(todo)" class="btn text-danger btn-sm">Delete</a></td>
                           </tr>
                         </tbody>
@@ -49,8 +50,34 @@
                 el:'#todo-table',
                 data: {
                     todos: [{text: 'todo one'}]
+                },
+                methods: {
+                    beginUpdating: function(todo) {
+                        form.editMode = true;
+                        form.oldTodo = todo;
+                        form.newTodo.text = todo.text;
+                    }
+                }
+            });
+
+            var form = new Vue({
+                el: '#form',
+                data: {
+                    editMode: false,
+                    oldTodo: undefined,
+                    newTodo: {text: ''}
+                },
+                methods: {
+                    submitForm: function() {
+                        if(this.editMode) {
+                            updateTodo(this.oldTodo, this.newTodo)
+                        } else {
+                            createTodo();
+                        }
+                    }
                 }
             })
+
 
 
             function createTodo() {
@@ -98,6 +125,28 @@
                     alert('opration failed.')
                 })
             }
+
+            // update todo
+
+            function updateTodo(oldTodo, newTodo) {
+                    // jQuery don't have method delete, we use ajax
+                    $.ajax({
+                    url: '/todos',
+                    contentType: 'application/json',
+                    data: JSON.stringify({oldTodo: oldTodo, newTodo: newTodo}),
+                    method: 'put'
+                }).done(function() {
+                    // for change state to add
+                    form.editMode = false;
+                    form.newTodo = {text: ''};
+                    getTodos();
+                }).fail(function(err) {
+                    console.log(err);
+                    alert('opration failed.')
+                })
+            }
+
+            // updateTodo({text: 'javid'}, {text: 'update todo'});
         </script>
     </body>
 </html>

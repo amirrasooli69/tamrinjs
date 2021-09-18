@@ -49,7 +49,7 @@ app.post('/todos' , (req , res) => {
     })
 
 })
-// fill todo when start page
+// fill todo when start page // other use refresh
 app.get('/todos', (req, res) => {
     
     fs.readFile(todosFilePath, (err, data) => {
@@ -95,6 +95,42 @@ app.delete('/todos', (req, res) => {
             }
         })
     });
+});
+
+app.put('/todos' , (req, res) => {
+    const oldTodo = {text} = req.body.oldTodo;
+    const newTodo = {text} = req.body.newTodo;
+
+    // read toods file
+    fs.readFile(todosFilePath, (err, data) => {
+
+        //convert data to json object
+        data = JSON.parse(data);
+        //update todos file
+        data.forEach((t, i) => {
+            if(t.text === oldTodo.text) {
+                data[i] =  newTodo;
+            }
+        });
+
+        // convert data to string
+        data = JSON.stringify(data);
+
+        // save data  to json file
+
+        fs.writeFile(todosFilePath, data ,err => {
+            
+            // send result to user
+            if(err) {
+                res.status(500).send(err);
+                return;
+            }
+
+            res.send(newTodo);
+        })
+    })
+
+    
 })
 
 
