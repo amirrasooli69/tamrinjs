@@ -32,6 +32,7 @@
                         <tbody>
                           <tr v-for="todo in todos"> 
                             <td>{{todo.text}}</td>
+                            <td with="10"><a v-on:click="deleteTodo(todo)" class="btn text-danger btn-sm">Delete</a></td>
                           </tr>
                         </tbody>
                     </table>
@@ -74,12 +75,29 @@
                 
             }
 
+            // get todos
             function getTodos() {
                 $.get('/todos' , function(data) {
                     model.todos = data;
                 })
             }
             getTodos();
+
+            // delete todo
+            function deleteTodo(todo) {
+                // jQuery don't have method delete, we use ajax
+                $.ajax({
+                    url: '/todos',
+                    contentType: 'application/json',
+                    data: JSON.stringify(todo),
+                    method: 'delete'
+                }).done(function() {
+                    getTodos();
+                }).fail(function(err) {
+                    console.log(err);
+                    alert('opration failed.')
+                })
+            }
         </script>
     </body>
 </html>

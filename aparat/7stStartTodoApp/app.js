@@ -65,6 +65,38 @@ app.get('/todos', (req, res) => {
     })
 })
 
+app.delete('/todos', (req, res) => {
+    const todo =  {text} = req.body;
+    // read todo file
+    fs.readFile(todosFilePath, (err, data) => {
+        if(err) {
+            res.status(500).send(err);
+            return;
+        }
+        // convert to json
+        data = JSON.parse(data);
+        // remove requested todo from todos
+        data = data.filter(d => {
+            return d.text != todo.text;
+        })
+        // convert data to string
+
+        data = JSON.stringify(data);
+        // save data to json file
+
+        fs.writeFile(todosFilePath, data , err => {
+            if(err) {
+                res.status(500).send(err);
+            } else {
+                // send  ok response to user
+
+                res.end();
+
+            }
+        })
+    });
+})
+
 
 app.listen(8080);
 console.log('server power on port 8080');
