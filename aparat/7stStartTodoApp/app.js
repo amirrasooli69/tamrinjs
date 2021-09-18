@@ -10,9 +10,12 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
+
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname , 'public/index.html'));
 })
+
+const todosFilePath = path.resolve(__dirname , 'data/todos.json');
 
 app.post('/todos' , (req , res) => {
     const todo = {text} = req.body;
@@ -22,7 +25,6 @@ app.post('/todos' , (req , res) => {
     }
 
     // read save data
-    const todosFilePath = path.resolve(__dirname , 'data/todos.json');
     fs.readFile(todosFilePath , (err, data) => {
         if(err) {
             res.status(500).send(err);
@@ -47,5 +49,22 @@ app.post('/todos' , (req , res) => {
     })
 
 })
+// fill todo when start page
+app.get('/todos', (req, res) => {
+    
+    fs.readFile(todosFilePath, (err, data) => {
+        if(err) {
+            res.status(500).send(err);
+            return;
+        }
+
+        // send data to user
+
+        data = JSON.parse(data);
+        res.send(data);
+    })
+})
+
+
 app.listen(8080);
 console.log('server power on port 8080');

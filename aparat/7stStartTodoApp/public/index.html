@@ -73,6 +73,13 @@
                 $('#new-todo').val('');
                 
             }
+
+            function getTodos() {
+                $.get('/todos' , function(data) {
+                    model.todos = data;
+                })
+            }
+            getTodos();
         </script>
     </body>
 </html>
