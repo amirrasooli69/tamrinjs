@@ -32,7 +32,6 @@ const controller = {
                     res.status(500).send(err);
                 } else {
                     res.send(todo);
-                    console.log('create data' + todo);
                 }
             })
         })

@@ -1,6 +1,6 @@
-const express = require('express').Router();
+const router = require('express').Router();
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname , '../public/index.html'));
 });
 
