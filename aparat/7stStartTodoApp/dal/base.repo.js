@@ -1,12 +1,20 @@
-const mongoDb = require('mongodb');
+var mongoDb = require('mongodb').MongoClient;
+let theDB = undefined;
 
-const connection = () => {
-    const connectionString = 'mongodb://localhost:27017/todoApp';    
-
-    mongoDb.connect(connectionString, (err , client) => {
+const connect = (next) => {
+    if(theDB){
+        next(null,theDB)
+        return;
+    } 
+    mongoDb.connect('mongodb://localhost:27017/todoApp', (err , client) => {
         if(err){
-            console.log(err , client);
+            next(err);
+            
+        } else {
+            theDB = client.db();
+            next(null,theDB);
+
         }
     });
 }
-module.exports = connection;
+module.exports.connect = connect;

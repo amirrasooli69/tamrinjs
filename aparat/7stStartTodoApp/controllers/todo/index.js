@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const todosRepo = require('../../dal/todos.repo');
 
 const todosFilePath = path.resolve(__dirname , '../../data/todos.json');
 
@@ -13,28 +14,13 @@ const controller = {
         }
     
         // read save data
-        fs.readFile(todosFilePath , (err, data) => {
+        todosRepo.create(todo , (err , result) => {
             if(err) {
                 res.status(500).send(err);
-                return;
+            } else {
+                res.send(result);
             }
-            //add new todo to save data
-    
-            data = JSON.parse(data);
-            data.push(todo);
-            data = JSON.stringify(data);
-            
-            // save the new data
-    
-            fs.writeFile(todosFilePath , data , err => {
-                //send the result to user
-                if(err) {
-                    res.status(500).send(err);
-                } else {
-                    res.send(todo);
-                }
-            })
-        })
+        });
     
     },
     // featch all data or refresh data
