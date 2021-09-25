@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const todosRepo = require('../../dal/todos.repo');
 
-const todosFilePath = path.resolve(__dirname , '../../data/todos.json');
+// const todosFilePath = path.resolve(__dirname , '../../data/todos.json');
 
 const controller = {
     // create todos
@@ -16,7 +16,7 @@ const controller = {
         // read save data
         todosRepo.create(todo , (err , result) => {
             if(err) {
-                res.status(500).send(err);
+                res.status(500).send (err);
             } else {
                 res.send(result);
             }
@@ -25,83 +25,28 @@ const controller = {
     },
     // featch all data or refresh data
     featchAll: (req, res) => {
-    
-        fs.readFile(todosFilePath, (err, data) => {
-            if(err) {
-                res.status(500).send(err);
-                return;
+        todosRepo.fetchAll((err , data ) => {
+            if(err) res.status(500).send(err);
+            else {
+                res.send(data);
             }
-    
-            // send data to user
-    
-            data = JSON.parse(data);
-            res.send(data);
         })
     },
     // delete todos
     delete: (req, res) => {
-        const todo =  {text} = req.body;
+        const todo =  { _id , text} = req.body;
         // read todo file
-        fs.readFile(todosFilePath, (err, data) => {
-            if(err) {
-                res.status(500).send(err);
-                return;
-            }
-            // convert to json
-            data = JSON.parse(data);
-            // remove requested todo from todos
-            data = data.filter(d => {
-                return d.text != todo.text;
-            })
-            // convert data to string
-    
-            data = JSON.stringify(data);
-            // save data to json file
-    
-            fs.writeFile(todosFilePath, data , err => {
-                if(err) {
-                    res.status(500).send(err);
-                } else {
-                    // send  ok response to user
-    
-                    res.end();
-    
-                }
-            })
-        });
+        todosRepo.delete(todo._id , (err , result) => {
+            if(err) res.status(500).send(err);
+            else res.send(result);
+        })
     },
     // update todos
     update: (req, res) => {
-    const oldTodo = {text} = req.body.oldTodo;
-    const newTodo = {text} = req.body.newTodo;
-
-    // read toods file
-    fs.readFile(todosFilePath, (err, data) => {
-
-        //convert data to json object
-        data = JSON.parse(data);
-        //update todos file
-        data.forEach((t, i) => {
-            if(t.text === oldTodo.text) {
-                data[i] =  newTodo;
-            }
-        });
-
-        // convert data to string
-        data = JSON.stringify(data);
-
-        // save data  to json file
-
-        fs.writeFile(todosFilePath, data ,err => {
-            
-            // send result to user
-            if(err) {
-                res.status(500).send(err);
-                return;
-            }
-
-            res.send(newTodo);
-        })
+    const todo = { _id , text} = req.body;
+    todosRepo.update(todo._id , {text: todo.text} , (err , result) => {
+        if(err) res.status(500).send(err);
+        else res.send(result);
     })
 
     }

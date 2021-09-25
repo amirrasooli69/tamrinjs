@@ -1,4 +1,5 @@
-var mongoDb = require('mongodb').MongoClient;
+
+const mongoDb = require('mongodb').MongoClient;
 let theDB = undefined;
 
 const connect = (next) => {
@@ -6,7 +7,7 @@ const connect = (next) => {
         next(null,theDB)
         return;
     } 
-    mongoDb.connect('mongodb://localhost:27017/todoApp', (err , client) => {
+    mongoDb.connect('mongodb://localhost:27017/todoApp', {useNewUrlParser:true} , (err , client) => {
         if(err){
             next(err);
             

@@ -20,7 +20,7 @@
                             <label for="newTodo">{{editMode ? 'Update Todo' : 'Add Todo'}}</label>
                             <input type="text" class="form-control" id="new-todo" v-model="newTodo.text" placeholder="what you are going to do?"></input>
                         </div>
-                        <button class="btn btn-succes">{{editMode ? 'Update' : 'Add'}}</button>
+                        <button class="btn btn-succes">{{editMode ? 'Save' : 'Add'}}</button>
                     </form>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                     beginUpdating: function(todo) {
                         form.editMode = true;
                         form.oldTodo = todo;
-                        form.newTodo.text = todo.text;
+                        form.newTodo = todo;
                     }
                 }
             });
@@ -69,7 +69,7 @@
                 methods: {
                     submitForm: function() {
                         if(this.editMode) {
-                            updateTodo(this.oldTodo, this.newTodo)
+                            updateTodo(this.newTodo)
                         } else {
                             createTodo();
                         }
@@ -88,7 +88,7 @@
                 // add new todo to to todo list
                 $.post('/todos', {text: newTodo}, function(data){
 
-                    model.todos.push(data);
+                    getTodos();
                 }).fail(function(err) {
                     console.log(err);
                     alert('operation failed');
@@ -125,12 +125,12 @@
 
             // update todo
 
-            function updateTodo(oldTodo, newTodo) {
+            function updateTodo(newTodo) {
                     // jQuery don't have method delete, we use ajax
                     $.ajax({
                     url: '/todos',
                     contentType: 'application/json',
-                    data: JSON.stringify({oldTodo, newTodo}),
+                    data: JSON.stringify(newTodo),
                     method: 'put'
                 }).done(function() {
                     // for change state to add
