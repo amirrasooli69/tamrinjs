@@ -43,8 +43,8 @@ const controller = {
     },
     // update todos
     update: (req, res) => {
-    const todo = { _id , text} = req.body;
-    todosRepo.update(todo._id , {text: todo.text} , (err , result) => {
+    const todo = { _id , text , isDone} = req.body;
+    todosRepo.update(todo._id , {text: todo.text , isDone : todo.isDone} , (err , result) => {
         if(err) res.status(500).send(err);
         else res.send(result);
     })

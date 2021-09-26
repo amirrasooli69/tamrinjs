@@ -3,6 +3,7 @@
     <head>
         <title>firs app</title>
         <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/main.css">
 
     </head>
     <body>
@@ -30,7 +31,8 @@
                     <table class="table table-striped" id="todo-table">
                         <tbody>
                           <tr v-for="todo in todos"> 
-                            <td>{{todo.text}}</td>
+                            <td with="5"><input type="checkbox" v-bind:checked="todo.isDone" v-on:click="toggleTodoStatus(todo)"></td>
+                            <td v-bind:class="todo.isDone ? 'text-muted done' : ''" style="color: violet; font-size: large;">{{todo.text}}</td>
                             <td with="10"><a v-on:click="beginUpdating(todo)" class="btn text-warning btn-sm">Edit</a></td>
                             <td with="10"><a v-on:click="deleteTodo(todo)" class="btn text-danger btn-sm">Delete</a></td>
                           </tr>
@@ -86,7 +88,7 @@
                     return;
                 }
                 // add new todo to to todo list
-                $.post('/todos', {text: newTodo}, function(data){
+                $.post('/todos', {text : newTodo }, function(data){
 
                     getTodos();
                 }).fail(function(err) {
@@ -143,6 +145,10 @@
                 })
             }
 
+            function toggleTodoStatus(todo) {
+                todo.isDone =! todo.isDone;
+                updateTodo(todo);
+            }
             // updateTodo({text: 'javid'}, {text: 'update todo'});
         </script>
     </body>
