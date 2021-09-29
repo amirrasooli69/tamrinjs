@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "this is the first app",
   "main": "app.js",
+  "start": "node app.js",
+  "install": "npm install",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
